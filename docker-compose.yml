@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: ./bt-back
+    ports:
+      - "8080:8080"
+    networks:
+      - bt-network
+
+  frontend:
+    build:
+      context: ./btfront
+    ports:
+      - "5173:5173"
+    networks:
+      - bt-network
+    environment:
+      - VITE_BACKEND_URL=http://backend:8080
+
+networks:
+  bt-network:
